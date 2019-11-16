@@ -1,0 +1,26 @@
+default_opencv_landmark:  
+    LoadImages(data:image path):
+        return images,labels,names 
+   FaceRec(data:image path):
+       generate facemarks, show in the camera
+    
+scipy_opencv_landmark:
+   FaceRec(data:image path):
+       use scipy.spatial.procrustes to calculate difference between facemarks
+       
+generate_landmarks:
+    saveCSV(data:save path):
+       generate landmarks from all faces images in the database, save into a csv file  (numberOfPerson*68 rows, 2 columns)--68 racemarks and coordinate
+       generate a names.txt file with a sequence of names of recognized person(correspoding to the sequence of landmarks.csv)      
+       return names,len(names),noFaceImg,unrecognized
+           names: of all recognized person
+           len(names): length of names
+           noFaceImg: an array stores names (e.g A) with no image in A directory
+           unrecognized: store names with unrecognized facemark
+    readCSV():
+       read face marks from csv file
+       return a 3D array [all facemaks  [a person[coordinate]..[coordinate]]]
+   getline(thefilepath, desired_line_number):
+       return the x line of the txt file
+    generator(data:image path):
+        generat your face from camera
