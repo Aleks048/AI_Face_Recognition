@@ -5,7 +5,7 @@ the idea here is that for evaluation we have 2 protocols:
     1) closed protocol - the tested images were in the DB. task - find the ID of a person.
     2) open protocol - the tested images were not in the DB. task - decide whether the person is in the DB or not.
 '''
-def train_test_plit(root_str,train_percent:float=0.8):
+def train_test_split(root_str,train_percent:float=0.8):
     nNamesMoreThanOneVideo = 2827#known from before
     
     labels = []
@@ -54,4 +54,4 @@ def train_test_plit(root_str,train_percent:float=0.8):
 if __name__=="__main__":
     print ("testing...")
     print(os.getcwd())
-    train_test_plit(r".\datasets\aligned_images_DB")
+    train_test_split(r".\datasets\several_faces_dataset")

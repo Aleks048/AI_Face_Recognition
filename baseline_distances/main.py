@@ -13,7 +13,7 @@ def distances(trData,testData,distFunc):
 
 
 if __name__=="__main__":
-    def test():
+    def testSimple():
         import random
         def testDist (x,y):
             return abs(x-y)
@@ -22,4 +22,12 @@ if __name__=="__main__":
         print("x = ",x)
         print("y =",y)
         print("closest indices",distances(x,y,testDist))
-    test()
+    def testImages():
+        import sys
+        import numpy
+        sys.path.append("./preprocess/general_preprocessing")
+        from train_test_split import train_test_split
+        train_test_split(".\datasets\several_faces_dataset")
+
+
+    testImages()
