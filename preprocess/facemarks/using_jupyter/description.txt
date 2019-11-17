@@ -1,7 +1,7 @@
 default_opencv_landmark:  
     LoadImages(data:image path):
         return images,labels,names 
-   FaceRec(data:image path):
+    FaceRec(data:image path):
        generate facemarks, show in the camera
     
 scipy_opencv_landmark:
@@ -20,7 +20,7 @@ generate_landmarks:
     readCSV():
        read face marks from csv file
        return a 3D array [all facemaks  [a person[coordinate]..[coordinate]]]
-   getline(thefilepath, desired_line_number):
-       return the x line of the txt file
+    getline(thefilepath, desired_line_number):
+        return the x line of the txt file
     generator(data:image path):
-        generat your face from camera
+        generate your face from camera
