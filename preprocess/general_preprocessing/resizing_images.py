@@ -10,8 +10,8 @@ def resize_images(imagesPaths,x,y):
     '''
     !ALERT : resizes inplace
     '''
-    for imP in imagesPaths:
-        resize_image(imP,imP,x,y)
+    for imPath,_ in imagesPaths:
+        resize_image(imPath,imPath,x,y)
 
 if __name__=="__main__":
     resize_image(r".\datasets\several_faces_dataset\Aaron_Eckhart\0\aligned_detect_0.555.jpg",r".\datasets\several_faces_dataset\Aaron_Eckhart\0\aligned_detect_my555.jpg",250,250)

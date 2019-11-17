@@ -1,5 +1,6 @@
 import os
 import random
+
 '''
 the idea here is that for evaluation we have 2 protocols:
     1) closed protocol - the tested images were in the DB. task - find the ID of a person.
@@ -25,8 +26,7 @@ def train_test_split(root_str,train_percent:float=0.8):
     closedPrTestIndices.sort()
 
     for root,subdirs,files in os.walk(root_str):
-        if len(subdirs)>1 and root!=root_str:
-            
+        if len(subdirs)>1 and root!=root_str:            
             for subdir in subdirs:
                 if closedPrIndex in closedPrTestIndices:
                     closedProtocolTestFoldersPaths.append(root+"\\"+subdir)
@@ -36,22 +36,22 @@ def train_test_split(root_str,train_percent:float=0.8):
         elif len(subdirs)==1 and root!=root_str:
             openProtocolTestFoldersPaths.append(root+"\\"+subdirs[0])
         elif root!=root_str:
+            personsName = root.replace(root_str,"")[1:-2]#name of the person in the video
             if root in trainFoldersPaths:
-                for file in files:
-                    trainFilesPaths.append(root+"/"+file)
+                for file in files:     
+                    trainFilesPaths.append([root+"/"+file,personsName])
             if root in closedProtocolTestFoldersPaths:
                 for file in files:
-                    closedProtocolTestFilesPaths.append(root+"/"+file)
+                    closedProtocolTestFilesPaths.append([root+"/"+file,personsName])
             if root in openProtocolTestFoldersPaths:
                 for file in files:
-                    openProtocolTestFilesPaths.append(root+"/"+file)
+                    openProtocolTestFilesPaths.append([root+"/"+file,personsName])
             pass
-    print(len(trainFilesPaths))
-    print(len(closedProtocolTestFilesPaths))
-    print(len(openProtocolTestFilesPaths))
+    print("number of train images: ", len(trainFilesPaths))
+    print("number of closed protocol test images: ", len(closedProtocolTestFilesPaths))
+    print("number of open protocol test images", len(openProtocolTestFilesPaths))
     return trainFilesPaths,closedProtocolTestFilesPaths,openProtocolTestFilesPaths
 
 if __name__=="__main__":
     print ("testing...")
-    print(os.getcwd())
     train_test_split(r".\datasets\several_faces_dataset")
