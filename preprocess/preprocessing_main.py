@@ -1,21 +1,27 @@
 '''
-creating the dataset of type:
-
+creating the dataset of images of the same size of type:
+[[persons name,[filePath,name,[[frame coordinates],[facemarks pairs]]]]]
+there are 3 datasets merged into 1.
+    1)training dataset
+    2)closed testing protocol dataset
+    3)open testing protocol dataset
 '''
 import sys
 sys.path.append("./preprocess/general_preprocessing")
 sys.path.append("./preprocess/facemarks/using_python")
+sys.path.append("./utils")
 
 from resizing_images import resize_images
 from train_test_split import train_test_split
-from generating_facemarks import create_facemarks
+from generating_facemarks import collect_facemarks
+from read_write import write_csv
+from read_write import write_npy
 
 import configparser
 
+
 cf=configparser.ConfigParser()
 cf.read("./config.ini")
-
-import csv
 
 if __name__=="__main__":
     #split the train and test data // trData,clPrtestData,openPrTestData
@@ -27,20 +33,16 @@ if __name__=="__main__":
     print("Resizing the images...")
     print("!ALERT!:resizing inplace!!!")
     dimensionsXY = cf.getint("preprocess","forcedImageSizeXY")
-    for d in dataPaths:
-        resize_images(d,dimensionsXY,dimensionsXY)
-    print("DONE")
+
+    #uncomment if resize needed
+    #resize_images(dataPaths,dimensionsXY,dimensionsXY)
+    #augment with facemarks
+    #NOTE: we remove the images that the model fails to produce facemarks to
     print("Adding facemarks to the dataset")
-    for d in dataPaths:
-        for im in d:
-            facemarks = create_facemarks(im[0])
-            im.append(facemarks)
+    collect_facemarks(dataPaths)
+    
     print("DONE")
     print("Saving the data...")
-    for d in dataPaths:
-        with open(cf.get("preprocess","csvAllData"),"a") as csvFile:
-            writer = csv.writer(csvFile)
-            writer.writerow(d)
-            csvFile.close()
+    write_npy(dataPaths,cf.get("datasets","npyAllDataTest"))
     print("DONE")
     

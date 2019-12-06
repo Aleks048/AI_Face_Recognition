@@ -1,8 +1,6 @@
-import os
 import cv2
 import numpy
 import configparser
-
 
 def create_facemarks(imgPath):
     '''
@@ -15,7 +13,22 @@ def create_facemarks(imgPath):
         #landmarks is a 4D array  len(landmarks) = number of faces in a image 
         ok, landmarks = facemark.fit(img, faces)
         return [faces,landmarks[0][0]]
-        
+def collect_facemarks(datasetPaths):
+    '''augment the dataset with the facemarks'''
+    for d in datasetPaths:
+        for i,seq in enumerate(d):
+            #newSeq: we use it to only leave the images where we found the face and were able to generate facemarks
+            newSeq = [[],[]]
+            newSeq[0] = seq[0]
+            images = []
+            for im in seq[1]:                           
+                createdFacemarks = create_facemarks(im[0])
+                #check if the face was found and the facemarks can be added
+                if createdFacemarks != None:
+                    im.append(createdFacemarks)
+                    images.append(im)
+            newSeq[1]=images
+            d[i] = newSeq
 if __name__=="__main__":
     print("testing")
     face_cascade = cv2.CascadeClassifier("./supporting_files/preprocess/facemarks/haarcascade_frontalface_default.xml") 
