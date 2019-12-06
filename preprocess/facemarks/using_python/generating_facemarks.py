@@ -1,6 +1,10 @@
+
+'''used to generate the facemarks on the datasset'''
 import cv2
 import numpy
 import configparser
+
+
 
 def create_facemarks(imgPath):
     '''

@@ -1,3 +1,5 @@
+'''takes the image and resizes it to the desired size'''
+
 import numpy
 from PIL import Image
 

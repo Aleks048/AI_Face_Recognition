@@ -1,3 +1,5 @@
+'''preprocess done on the data to do SVM'''
+
 def preprocessSVM(data,type="",nImages=10):
     if type=="seq":# if we use the sequences as a whole
         flatten = lambda l: [i for ind,im in enumerate(l) for sub in im[2][1] for i in sub if ind<nImages]

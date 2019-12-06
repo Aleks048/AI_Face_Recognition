@@ -1,4 +1,6 @@
 '''
+takes the dataset of images and creates a beauty.
+
 creating the dataset of images of the same size of type:
 [[persons name,[filePath,name,[[frame coordinates],[facemarks pairs]]]]]
 there are 3 datasets merged into 1.

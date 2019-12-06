@@ -1,5 +1,5 @@
 '''
-if we use each sequence as a datapoint
+if we use each sequence as a datapoint to calculate distances
 '''
 
 def distanceBetweenSeq(seqA,seqB,distBetweenIm,distType):

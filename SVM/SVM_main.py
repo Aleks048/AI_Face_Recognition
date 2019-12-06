@@ -1,3 +1,5 @@
+'''fits SVM and does PAC '''
+
 def fitSvm(trsinData,trainLabels):
     clf = svm.LinearSVC(multi_class="crammer_singer",max_iter=10,)
     clf.fit(trsinData,trainLabels)

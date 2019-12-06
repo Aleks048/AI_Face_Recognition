@@ -1,4 +1,4 @@
 # AI_Face_Recognition
 face recognition AI project
 
-add a folder named datasets and keep all your datasets there please
+keep all your datasets in the datasets folder please there please

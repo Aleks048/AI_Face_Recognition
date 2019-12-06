@@ -1,5 +1,5 @@
 import math
-
+'''if distances are computed between the facepoints of the images'''
 
 def warn(*args, **kwargs):
     pass

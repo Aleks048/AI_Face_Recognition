@@ -1,3 +1,5 @@
+'''generates train and test data'''
+
 import os
 import random
 

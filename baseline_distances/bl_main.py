@@ -1,3 +1,6 @@
+
+'''collects the predictions of the distance methods on the dataset'''
+
 from DistanceFunction import DistanceFunction
 def predictions(trData,testData,distFunc:DistanceFunction):
     '''
